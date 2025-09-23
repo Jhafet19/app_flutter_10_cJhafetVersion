@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:backend": " cd packages/backend && ./mvnw spring-boot:run",
-    "start:frontend": "flutter emulators --launch Medium_Phone_API_36.0 && sleep 15 && cd packages/frontend && flutter run --debug",
+    "start:frontend": "emulator -avd idx_emulator & sleep 15 && cd packages/frontend && flutter run --debug",
     "start:all": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
   },
   "keywords": [],
@@ -17,4 +17,3 @@
     "concurrently": "^9.2.1"
   }
 }
-

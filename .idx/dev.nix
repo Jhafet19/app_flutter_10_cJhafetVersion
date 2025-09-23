@@ -2,7 +2,7 @@
 # see: https://firebase.google.com/docs/studio/customize-workspace
 { pkgs, ... }: {
   # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
+  channel = "unstable";
 
   # Use https://search.nixos.org/packages to find packages
   packages = [
@@ -10,11 +10,24 @@
     pkgs.maven
     pkgs.flutter
     pkgs.nodejs_20
+    # Provides essential Android command-line tools like sdkmanager
+    pkgs.android-tools
+    # Required for the Android emulator
+    pkgs.xorg.libX11
+    pkgs.xorg.libXrandr
+    pkgs.xorg.libXcursor
+    pkgs.xorg.libXinerama
   ];
 
   # Sets environment variables in the workspace
   env = {
     JAVA_HOME = "${pkgs.jdk17}";
+    ANDROID_HOME = "$HOME/Android/sdk";
+    PATH = [
+      "$HOME/Android/sdk/emulator"
+      "$HOME/Android/sdk/cmdline-tools/latest/bin"
+      "$HOME/Android/sdk/platform-tools"
+    ];
   };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
